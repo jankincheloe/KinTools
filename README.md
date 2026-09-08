@@ -2,7 +2,7 @@
 
 Collection of small, framework-friendly tools for other projects. Every tool
 lives in its own folder, has its own package metadata and can be used without
-depending on ETAIN Hub.
+dependencies.
 
 ## Available tools
 
