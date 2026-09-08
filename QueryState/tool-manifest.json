@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "name": "QueryState",
+  "package": "@jankincheloe/query-state",
+  "version": "0.1.0",
+  "description": "Typed, framework-friendly synchronization of UI state with URL search parameters.",
+  "category": "navigation",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "browser",
+    "react"
+  ],
+  "features": [
+    "typed-query-state",
+    "url-search-parameters",
+    "query-codecs",
+    "history-navigation",
+    "react-adapter"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

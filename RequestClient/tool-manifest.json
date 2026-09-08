@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "name": "RequestClient",
+  "package": "@jankincheloe/request-client",
+  "version": "0.1.0",
+  "description": "Small, typed fetch-based HTTP client for browser and modern Node runtimes.",
+  "category": "networking",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "browser",
+    "node"
+  ],
+  "features": [
+    "fetch-transport",
+    "typed-responses",
+    "request-errors",
+    "retry-backoff",
+    "auth-refresh",
+    "request-ids"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

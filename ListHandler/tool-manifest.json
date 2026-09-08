@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "name": "ListHandler",
+  "package": "@jankincheloe/list-handler",
+  "version": "0.1.0",
+  "description": "Accessible, theme-neutral React table handler with sorting, column visibility and resizing.",
+  "category": "data-display",
+  "status": "stable",
+  "targets": [
+    "react",
+    "browser"
+  ],
+  "features": [
+    "sorting",
+    "resizing",
+    "column-visibility"
+  ],
+  "accessibility": true,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "name": "ErrorToolkit",
+  "package": "@jankincheloe/error-toolkit",
+  "version": "0.1.0",
+  "description": "Safe, typed application error normalization with an optional React boundary and retry adapter.",
+  "category": "error-handling",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "react"
+  ],
+  "features": [
+    "error-normalization",
+    "sensitive-data-redaction",
+    "field-errors",
+    "support-ids",
+    "error-reporting",
+    "react-error-boundary"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

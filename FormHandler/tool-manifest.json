@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "name": "FormHandler",
+  "package": "@jankincheloe/form-handler",
+  "version": "0.1.0",
+  "description": "Typed, framework-independent form state and validation primitives.",
+  "category": "forms",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "react"
+  ],
+  "features": [
+    "typed-form-state",
+    "field-validation",
+    "async-validation",
+    "form-submission",
+    "react-adapter"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

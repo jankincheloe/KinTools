@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "name": "SelectionHandler",
+  "package": "@jankincheloe/selection-handler",
+  "version": "0.1.0",
+  "description": "Immutable, accessible selection logic for tables, cards, and lists with an optional React hook.",
+  "category": "selection",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "react"
+  ],
+  "features": [
+    "single-selection",
+    "multi-selection",
+    "range-selection",
+    "all-results",
+    "selection-limits"
+  ],
+  "accessibility": true,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

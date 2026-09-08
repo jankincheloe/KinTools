@@ -1,0 +1,26 @@
+export {
+  clearAllResults,
+  clearSelection,
+  createSelectionState,
+  getSelectionStatus,
+  isSelected,
+  selectAll,
+  selectAllOnPage,
+  selectAllResults,
+  selectMany,
+  selectOne,
+  selectPage,
+  selectRange,
+  selectedCount,
+  selectedIdsFor,
+  selectionStatus,
+  togglePageSelection,
+  toggleSelection,
+} from "./core.js";
+export type {
+  SelectionId,
+  SelectionMode,
+  SelectionOptions,
+  SelectionState,
+  SelectionStatus,
+} from "./core.js";
