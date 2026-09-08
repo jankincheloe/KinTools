@@ -1,0 +1,190 @@
+.list-handler {
+  --list-handler-border: #d5d9dc;
+  --list-handler-surface: #fff;
+  --list-handler-surface-muted: #f5f7f8;
+  --list-handler-text: #1d2930;
+  --list-handler-text-muted: #52616a;
+  --list-handler-accent: #0d6b5e;
+  --list-handler-focus: #126aef;
+  color: var(--list-handler-text);
+}
+
+.list-handler__toolbar,
+.list-handler__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.list-handler__toolbar {
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.list-handler__scroll-area {
+  overflow-x: auto;
+  border: 1px solid var(--list-handler-border);
+  border-radius: 0.5rem;
+}
+
+.list-handler__table {
+  width: 100%;
+  min-width: var(--list-handler-min-width, 100%);
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.list-handler__header {
+  position: relative;
+  padding: 0;
+  color: var(--list-handler-text-muted);
+  background: var(--list-handler-surface-muted);
+  border-bottom: 1px solid var(--list-handler-border);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.list-handler__header-label,
+.list-handler__sort {
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 2rem 0.75rem 1rem;
+}
+
+.list-handler__sort {
+  width: 100%;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.list-handler__sort:hover {
+  color: var(--list-handler-accent);
+  background: color-mix(in srgb, var(--list-handler-accent) 8%, transparent);
+}
+
+.list-handler__resize-handle {
+  position: absolute;
+  z-index: 1;
+  top: 0.25rem;
+  right: 0;
+  bottom: 0.25rem;
+  width: 1rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.list-handler__resize-handle::after {
+  position: absolute;
+  top: 20%;
+  bottom: 20%;
+  left: 0.44rem;
+  width: 0.125rem;
+  content: "";
+  background: transparent;
+  border-radius: 999px;
+}
+
+.list-handler__header:hover .list-handler__resize-handle::after,
+.list-handler__resize-handle:focus-visible::after {
+  background: var(--list-handler-accent);
+}
+
+.list-handler__sort:focus-visible,
+.list-handler__resize-handle:focus-visible,
+.list-handler__column-chooser :focus-visible,
+.list-handler__row--interactive:focus-visible {
+  outline: 0.1875rem solid var(--list-handler-focus);
+  outline-offset: -0.1875rem;
+}
+
+.list-handler__table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--list-handler-border);
+  overflow-wrap: anywhere;
+  vertical-align: middle;
+}
+
+.list-handler__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.list-handler__row--interactive {
+  cursor: pointer;
+}
+
+.list-handler__row--interactive:hover {
+  background: color-mix(in srgb, var(--list-handler-accent) 6%, transparent);
+}
+
+.list-handler__align-right {
+  text-align: right;
+}
+
+.list-handler__column-chooser {
+  position: relative;
+}
+
+.list-handler__column-chooser summary {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--list-handler-border);
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.list-handler__column-chooser fieldset {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  min-width: 13rem;
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.375rem;
+  padding: 0.75rem;
+  background: var(--list-handler-surface);
+  border: 1px solid var(--list-handler-border);
+  border-radius: 0.375rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 12%);
+}
+
+.list-handler__column-chooser label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.list-handler__column-chooser > button {
+  position: absolute;
+  z-index: 3;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.375rem 0.5rem;
+  color: var(--list-handler-text);
+  background: var(--list-handler-surface);
+  border: 1px solid var(--list-handler-border);
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.list-handler__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

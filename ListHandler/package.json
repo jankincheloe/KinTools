@@ -1,0 +1,48 @@
+{
+  "name": "@jankincheloe/list-handler",
+  "version": "0.1.0",
+  "description": "Accessible, theme-neutral React table handler with sorting, column visibility and resizing.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "scripts": {
+    "build": "node scripts/clean-dist.mjs && tsup src/index.ts src/core.ts --format esm,cjs --dts --external react --external react-dom && node scripts/copy-styles.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test test/core.test.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18 <20",
+    "react-dom": ">=18 <20"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "react",
+    "table",
+    "list",
+    "accessibility",
+    "column-resize"
+  ]
+}
