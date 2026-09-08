@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "name": "OverlayManager",
+  "package": "@jankincheloe/overlay-manager",
+  "version": "0.1.0",
+  "description": "Headless typed overlay stacks with optional React focus, escape, portal, and scroll-lock helpers.",
+  "category": "interaction",
+  "status": "experimental",
+  "targets": ["core", "browser", "react"],
+  "features": [
+    "immutable-overlay-stack",
+    "typed-payloads",
+    "layer-ordering",
+    "escape-dismissal",
+    "focus-return",
+    "modal-focus-trap",
+    "reference-counted-scroll-lock",
+    "react-portal-adapter"
+  ],
+  "accessibility": true,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

@@ -1,0 +1,48 @@
+{
+  "name": "@jankincheloe/permission-evaluator",
+  "version": "0.1.0",
+  "description": "Typed, framework-independent RBAC/ABAC permission evaluation with an optional React adapter.",
+  "license": "MIT",
+  "type": "module",
+  "files": ["dist"],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/clean-dist.mjs && tsup src/index.ts src/core.ts src/react.ts --format esm,cjs --dts --external react",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test test/core.test.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18 <20"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": ["permissions", "rbac", "abac", "authorization", "react"]
+}

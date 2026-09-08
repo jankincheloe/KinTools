@@ -4,6 +4,16 @@
 parameters. The core is framework-independent; the browser and React adapters
 are optional conveniences. It has no runtime dependencies.
 
+## Installation
+
+```bash
+npm install @jankincheloe/query-state
+```
+
+Import the framework-independent API from the package root or `/core`. Import
+`useQueryState` explicitly from `/react` so non-React consumers do not load the
+React adapter.
+
 ## Usage
 
 ```ts
@@ -50,6 +60,9 @@ The React hook uses `useSyncExternalStore` and has a stable server snapshot.
 React and ReactDOM are peer dependencies only. `createBrowserQueryState` falls
 back to an in-memory store when `window` is unavailable, so it is safe to call
 during SSR.
+
+For complete React and cross-package examples, see the
+[integration guide](../docs/integration.md).
 
 ## Development
 

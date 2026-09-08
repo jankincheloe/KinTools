@@ -12,7 +12,10 @@
     "SelectionHandler",
     "FormHandler",
     "ErrorToolkit",
-    "RequestClient"
+    "RequestClient",
+    "OverlayManager",
+    "PaginationHandler",
+    "PermissionEvaluator"
   ],
   "scripts": {
     "validate:manifests": "node scripts/validate-manifests.mjs",

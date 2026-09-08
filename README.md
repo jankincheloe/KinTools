@@ -19,6 +19,18 @@ remains independently installable and buildable.
   redaction, reporting and optional React boundary/retry adapters.
 - [`RequestClient`](./RequestClient) – framework-free fetch client for browser
   and modern Node runtimes with typed responses, retries and auth refresh.
+- [`OverlayManager`](./OverlayManager) – headless overlay stacks with optional
+  React portals, focus handling, Escape dismissal and scroll locking.
+- [`PaginationHandler`](./PaginationHandler) – immutable page and cursor
+  pagination with QueryState-friendly serialization and an optional React hook.
+- [`PermissionEvaluator`](./PermissionEvaluator) – typed RBAC/ABAC evaluation
+  with default-deny semantics and optional React guards.
+
+## Integration
+
+The German-language [`docs/integration.md`](./docs/integration.md) explains
+published and local installation, import paths, React integration and common
+combinations of the tools.
 
 ## Tool registry
 

@@ -56,6 +56,9 @@ Pass `storage={null}` to disable persistence, or implement `ListStateStorage`
 for server-backed preferences. All visible strings are exposed through the
 `labels` property, so consumers can provide their own language.
 
+For combinations with QueryState, pagination, selection, requests and other
+KinTools packages, see the [integration guide](../docs/integration.md).
+
 ## Development
 
 ```bash

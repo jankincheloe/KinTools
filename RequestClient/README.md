@@ -5,6 +5,15 @@ browsers and modern Node runtimes. It uses the platform `fetch` API and has no
 runtime dependencies. A custom fetch function makes the client straightforward
 to use with mocks, service workers, or another transport adapter.
 
+## Installation
+
+```bash
+npm install @jankincheloe/request-client
+```
+
+The package uses the platform Fetch, URL, Headers, and AbortController APIs. It
+therefore requires a modern browser or Node.js 18 and newer.
+
 ## Basic usage
 
 ```ts
@@ -92,6 +101,9 @@ const client = createRequestClient({
 
 `POST` is never retried by this v0.1 client, even if a custom `retryOn`
 function would otherwise accept the error.
+
+For integration with forms, safe error normalization and other KinTools, see
+the [integration guide](../docs/integration.md).
 
 ## Development
 

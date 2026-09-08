@@ -5,6 +5,15 @@ keeps values and field metadata immutable, accepts application-provided
 validators, and has no runtime dependencies. React is an optional adapter
 available from `@jankincheloe/form-handler/react`.
 
+## Installation
+
+```bash
+npm install @jankincheloe/form-handler
+```
+
+Use the package root or `/core` outside React. The `/react` subpath contains
+the optional hook and requires a compatible React peer dependency.
+
 ## Core usage
 
 ```ts
@@ -72,6 +81,9 @@ remain available on `form` in both modes.
 Autosave, draft restoration, multi-step wizards, navigation guards, and
 schema-library adapters are deliberately future extensions. They are not
 partially implemented in this package.
+
+For integration with RequestClient and ErrorToolkit, see the
+[integration guide](../docs/integration.md).
 
 ## Development
 

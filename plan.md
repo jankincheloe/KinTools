@@ -16,8 +16,11 @@ Die erste Ausbaustufe ist umgesetzt und zentral in der Tool-Registry erfasst:
 - [x] `FormHandler` v0.1 mit synchroner/asynchroner Validierung, Submit-Steuerung und optionalem React-Hook
 - [x] `ErrorToolkit` v0.1 mit sicherer Fehlernormalisierung, Redaction und optionaler React Error Boundary
 - [x] `RequestClient` v0.1 mit Fetch-Transport, Retry, Abort/Timeout, Auth-Refresh und Request-IDs
+- [x] `OverlayManager` v0.1 mit immutablem Stack, React-Portal, Fokussteuerung und Scroll-Lock
+- [x] `PaginationHandler` v0.1 für Seiten-/Größen- und Cursor-Pagination
+- [x] `PermissionEvaluator` v0.1 für typisierte RBAC-/ABAC-Regeln und React Guards
 
-Die neuen Pakete tragen zunächst den Reifegrad `experimental`. Noch offen sind insbesondere `OverlayManager`, Pagination, Filter/Saved Views, Berechtigungen, Datei-Upload sowie das Dokumentationsportal. Bei `FormHandler` bleiben Autosave, Entwurfswiederherstellung, Wizards, Navigation Guards und Schema-Adapter bewusst spätere Erweiterungen.
+Die neuen Pakete tragen zunächst den Reifegrad `experimental`. Noch offen sind insbesondere Filter/Saved Views, Datei-Upload sowie das Dokumentationsportal. Bei `FormHandler` bleiben Autosave, Entwurfswiederherstellung, Wizards, Navigation Guards und Schema-Adapter bewusst spätere Erweiterungen.
 
 ## Architekturprinzipien
 

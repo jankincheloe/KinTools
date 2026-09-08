@@ -4,6 +4,15 @@
 selection state for tables, cards, and lists. The core has no runtime
 dependencies; `useSelection` is a small optional React adapter.
 
+## Installation
+
+```bash
+npm install @jankincheloe/selection-handler
+```
+
+The package root and `/core` are React-free. React applications import the
+optional hook from `@jankincheloe/selection-handler/react`.
+
 ## API
 
 `SelectionState` has two modes:
@@ -66,6 +75,9 @@ selection.selectAllResults();
 
 For controlled use, pass `value` and `onChange`; omit `value` for
 uncontrolled local state. No visible UI or styles are included.
+
+For ListHandler, QueryState and PaginationHandler combinations, see the
+[integration guide](../docs/integration.md).
 
 ## Development
 

@@ -5,6 +5,15 @@ failures into a stable, typed `AppError`. The core has no runtime dependency
 and is available from the package root or `./core`; React adapters are opt-in
 through `./react`.
 
+## Installation
+
+```bash
+npm install @jankincheloe/error-toolkit
+```
+
+Server, worker, and non-React code can use the package root or `/core`. Import
+the optional boundary and retry adapter from `/react`.
+
 ## Core
 
 ```ts
@@ -76,6 +85,9 @@ import { ErrorBoundary, Retry } from "@jankincheloe/error-toolkit/react";
 `ErrorBoundary` delegates all visible copy and styles to the caller. `Retry`
 supports either a `fallback` node or a render-prop child and renders nothing
 when neither is provided. React is an optional peer dependency.
+
+For a safe FormHandler and RequestClient combination, see the
+[integration guide](../docs/integration.md).
 
 ## Development
 

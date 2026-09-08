@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "name": "PermissionEvaluator",
+  "package": "@jankincheloe/permission-evaluator",
+  "version": "0.1.0",
+  "description": "Typed RBAC/ABAC permission evaluation with explicit deny priority and an optional React adapter.",
+  "category": "authorization",
+  "status": "experimental",
+  "targets": ["core", "react"],
+  "features": [
+    "typed-actions",
+    "role-and-claim-rules",
+    "resource-predicates",
+    "explicit-deny-priority",
+    "redacted-debug-trace",
+    "react-adapter"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

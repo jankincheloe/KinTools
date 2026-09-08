@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "name": "PaginationHandler",
+  "package": "@jankincheloe/pagination-handler",
+  "version": "0.1.0",
+  "description": "Immutable headless page and cursor pagination with an optional React hook.",
+  "category": "navigation",
+  "status": "experimental",
+  "targets": ["core", "react"],
+  "features": [
+    "page-pagination",
+    "cursor-pagination",
+    "cursor-history",
+    "page-size-strategies",
+    "query-state-integration",
+    "react-hook"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}
