@@ -23,7 +23,16 @@ npm install \
   @jankincheloe/request-client \
   @jankincheloe/error-toolkit \
   @jankincheloe/overlay-manager \
-  @jankincheloe/permission-evaluator
+  @jankincheloe/permission-evaluator \
+  @jankincheloe/filter-builder \
+  @jankincheloe/saved-views \
+  @jankincheloe/draft-handler \
+  @jankincheloe/file-upload \
+  @jankincheloe/data-export \
+  @jankincheloe/command-registry \
+  @jankincheloe/history-handler \
+  @jankincheloe/storage-state \
+  @jankincheloe/task-queue
 ```
 
 Die Pakete sind derzeit mit Version `0.1.0` und dem Registry-Reifegrad `experimental` angelegt. Vor einer externen Veröffentlichung sollten Paketname, Registry-Ziel und Versionierungsprozess geprüft werden.
@@ -63,6 +72,15 @@ Nach Änderungen muss das KinTools-Paket erneut gebaut werden. Abhängig vom Pak
 | ErrorToolkit | `@jankincheloe/error-toolkit` oder `/core` | `@jankincheloe/error-toolkit/react` | – |
 | OverlayManager | `@jankincheloe/overlay-manager` oder `/core` | `@jankincheloe/overlay-manager/react` | DOM-Helfer unter `/dom` |
 | PermissionEvaluator | `@jankincheloe/permission-evaluator` oder `/core` | `@jankincheloe/permission-evaluator/react` | – |
+| FilterBuilder | `@jankincheloe/filter-builder` oder `/core` | `@jankincheloe/filter-builder/react` | – |
+| SavedViews | `@jankincheloe/saved-views` oder `/core` | `@jankincheloe/saved-views/react` | Speicheradapter aus der Anwendung |
+| DraftHandler | `@jankincheloe/draft-handler` oder `/core` | `@jankincheloe/draft-handler/react` | Asynchroner Persistenzadapter |
+| FileUpload | `@jankincheloe/file-upload` oder `/core` | `@jankincheloe/file-upload/react` | XHR-Transport unter `/browser` |
+| DataExport | `@jankincheloe/data-export` oder `/core` | – | Download unter `/browser` |
+| CommandRegistry | `@jankincheloe/command-registry` oder `/core` | `@jankincheloe/command-registry/react` | Tastenkürzel unter `/browser` |
+| HistoryHandler | `@jankincheloe/history-handler` oder `/core` | `@jankincheloe/history-handler/react` | – |
+| StorageState | `@jankincheloe/storage-state` oder `/core` | `@jankincheloe/storage-state/react` | Browser-Speicher unter `/browser` |
+| TaskQueue | `@jankincheloe/task-queue` oder `/core` | `@jankincheloe/task-queue/react` | – |
 
 Die expliziten `/react`-Subpfade verhindern, dass React in Server-, Worker- oder reinen TypeScript-Modulen unnötig geladen wird.
 
@@ -250,6 +268,113 @@ const permissions = createPermissionEvaluator<Action, Role>({
 
 Die Prüfung im Browser verbessert die Bedienoberfläche, ist aber keine Sicherheitsgrenze. Das Backend muss jede relevante Berechtigung erneut anhand vertrauenswürdiger Identitäts- und Ressourcendaten prüfen.
 
+## Filter, gespeicherte Ansichten und Export
+
+`FilterBuilder` definiert die Filterlogik. `QueryState` kann deren JSON-String
+über einen `stringCodec` in der URL halten. `SavedViews` speichert dauerhafte
+Ansichten; `DataExport` exportiert anschließend die gewünschten Datensätze.
+
+```ts
+import { createFilterBuilder, parseFilter } from "@jankincheloe/filter-builder";
+import { createSavedViews } from "@jankincheloe/saved-views";
+import { createMemoryStorage } from "@jankincheloe/storage-state";
+import { exportCsv } from "@jankincheloe/data-export";
+
+type Person = { name: string };
+const schema = { name: { type: "text" as const, getValue: (person: Person) => person.name } };
+const filter = createFilterBuilder(schema);
+filter.set({ field: "name", operator: "contains", value: "Ada" });
+
+type View = { filter: string };
+const adapter = createMemoryStorage();
+const views = createSavedViews<View>({
+  validate: (value): value is View => {
+    if (!value || typeof value !== "object" || !("filter" in value) || typeof value.filter !== "string") return false;
+    try { parseFilter(schema, value.filter); return true; } catch { return false; }
+  },
+  storage: { read: () => adapter.read("people:views"), write: (source) => adapter.write("people:views", source) },
+});
+const saved = views.save({ name: "Ada", value: { filter: filter.serialize() } });
+views.apply(saved.id, (value) => filter.set(parseFilter(schema, value.filter)));
+const csv = exportCsv(filter.filter([{ name: "Ada" }, { name: "Grace" }]), [
+  { key: "name", header: "Name", value: (person) => person.name },
+]);
+```
+
+Ein Browser-Speicher kann `createMemoryStorage()` durch `createBrowserStorage()`
+aus `@jankincheloe/storage-state/browser` ersetzen. Views sollten Filter,
+Sortierung, Spalten und Seitengröße enthalten. Antwortmetadaten, Cursor-Historie
+und eine vorübergehende Zeilenauswahl bleiben im aktuellen Anwendungszustand.
+Bei serverseitiger Pagination muss ein Export aller Treffer durch die Anwendung
+geladen oder serverseitig erzeugt werden; die Tools erfinden keine fehlenden Daten.
+
+## Formulare mit Entwurfssicherung
+
+Ein `DraftHandler` erhält geänderte Formwerte über eine Subscription oder einen
+Effect. `flush()` wartet auf die neueste Fassung. Eine Wiederherstellung erfolgt
+vor dem Verbinden der Formänderungen mit der Entwurfssicherung.
+
+```ts
+import { createFormHandler } from "@jankincheloe/form-handler";
+import { createDraftHandler } from "@jankincheloe/draft-handler";
+import { createStorageState } from "@jankincheloe/storage-state";
+
+type Values = { text: string };
+const validate = (value: unknown): value is Values => Boolean(value && typeof value === "object"
+  && "text" in value && typeof value.text === "string");
+const storage = createStorageState({ key: "profile:draft", initialValue: { text: "" }, validate });
+const draft = createDraftHandler({
+  initialValue: { text: "" }, validate,
+  persistence: {
+    save: (value) => { if (!storage.set(value)) throw storage.getState().error; },
+    load: () => storage.getState().value,
+  },
+});
+const form = createFormHandler({ initialValues: { text: "" } });
+if (await draft.restore()) form.reset(draft.getState().value);
+let lastText = form.getState().values.text;
+const unsubscribe = form.subscribe(() => {
+  const values = form.getState().values;
+  if (values.text !== lastText) { lastText = values.text; draft.set(values); }
+});
+form.setValue("text", "Entwurf");
+await draft.flush();
+unsubscribe(); draft.dispose(); storage.dispose();
+```
+
+Das Beispiel verwendet standardmäßig Speicher im Arbeitsspeicher. Für dauerhafte
+Entwürfe erhält `StorageState` einen Browser-Adapter. Für Remote-Autosave verwendet
+`DraftHandler` einen asynchronen Adapter, beispielsweise einen RequestClient-Aufruf,
+der das übergebene `AbortSignal` berücksichtigt.
+
+## Uploads, Aktionen und React-Lebenszyklus
+
+`FileUpload` übernimmt Dateiprüfung und Ablaufsteuerung. Sein `/browser`-Adapter
+`createXhrUploadTransport` sendet Multipart-Daten und meldet Upload-Fortschritt.
+`TaskQueue` bietet dieselben grundlegenden Abläufe für beliebige Aufgaben wie
+Massenaktionen. Abbruch sendet ein Signal; laufende Arbeit behält ihren Platz,
+bis die tatsächliche Promise endet. Wiederholungen sind explizit.
+
+`CommandRegistry` kann `PermissionEvaluator` und `SelectionHandler` im eigenen
+Kontext verwenden. `available` entscheidet über die Bedienoberfläche; `execute`
+prüft den Kontext erneut und verhindert eine parallele Ausführung derselben
+Aktion. Tastenkürzel lassen sich an die aktiven Overlay-/Editor-Scopes binden.
+`HistoryHandler` steuert lokale Undo/Redo-Schritte; serverseitige Aktionen brauchen
+eigene Gegenaktionen.
+
+Die acht neuen React-Hooks erhalten einen bereits existierenden Controller und
+geben `{ state, <controller> }` zurück. Die Controllerinstanz gehört der Anwendung.
+Sie wird einmal pro gewünschtem Lebenszyklus erstellt und dort gegebenenfalls
+mit `dispose()` aufgeräumt. Die Hooks führen beim Rendern keine Uploads, Saves
+oder Browser-Bindings aus. Controller mit Seiteneffekten können in einem Effect
+erstellt und vor der Instanzierung mit einer Ladeansicht überbrückt werden;
+so bleiben Setup/Cleanup auch im React Strict Mode korrekt.
+
+SSR-Controller gehören jeweils zu einer Anfrage. Server und Client müssen für
+die Hydration denselben Ausgangszustand verwenden; Browser-Persistenz kann nach
+der Hydration angebunden werden. Die Pakete bleiben separat installierbar und
+erzwingen keine gegenseitigen KinTools-Abhängigkeiten.
+
 ## Qualität im KinTools-Repository prüfen
 
 Von der Repository-Wurzel aus:
@@ -261,4 +386,7 @@ npm test
 npm run build
 ```
 
-Details zu API und Randfällen stehen in der jeweiligen Tool-README. Registry-Felder und Reifegrade sind in [tool-manifests.md](./tool-manifests.md) beschrieben.
+`npm test` prüft zusätzlich gemeinsame Abläufe, React-SSR und ESM-/CommonJS-
+Importe ohne Laden des optionalen React-Peers. Details zu API und Randfällen
+stehen in der jeweiligen Tool-README. Registry-Felder und Reifegrade sind in
+[tool-manifests.md](./tool-manifests.md) beschrieben.

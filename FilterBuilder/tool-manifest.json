@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "name": "FilterBuilder",
+  "package": "@jankincheloe/filter-builder",
+  "version": "0.1.0",
+  "description": "Typed, serializable filter expressions for local and server-side filtering.",
+  "category": "data-display",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "react"
+  ],
+  "features": [
+    "typed-filters",
+    "filter-groups",
+    "serialization"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

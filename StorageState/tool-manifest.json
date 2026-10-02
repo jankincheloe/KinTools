@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "name": "StorageState",
+  "package": "@jankincheloe/storage-state",
+  "version": "0.1.0",
+  "description": "Validated, versioned persisted state with browser and memory adapters.",
+  "category": "state",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "browser",
+    "react"
+  ],
+  "features": [
+    "typed-storage",
+    "migrations",
+    "browser-sync"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

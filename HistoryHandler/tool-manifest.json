@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "name": "HistoryHandler",
+  "package": "@jankincheloe/history-handler",
+  "version": "0.1.0",
+  "description": "Bounded local undo and redo history with grouped changes.",
+  "category": "state",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "react"
+  ],
+  "features": [
+    "undo",
+    "redo",
+    "change-grouping"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "name": "DraftHandler",
+  "package": "@jankincheloe/draft-handler",
+  "version": "0.1.0",
+  "description": "Debounced draft persistence with serialized saves and safe restoration.",
+  "category": "forms",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "react"
+  ],
+  "features": [
+    "autosave",
+    "draft-restoration",
+    "race-protection"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

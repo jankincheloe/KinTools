@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "name": "FileUpload",
+  "package": "@jankincheloe/file-upload",
+  "version": "0.1.0",
+  "description": "Headless file validation and concurrent upload lifecycle management.",
+  "category": "files",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "browser",
+    "react"
+  ],
+  "features": [
+    "upload-queue",
+    "validation",
+    "progress",
+    "abort"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

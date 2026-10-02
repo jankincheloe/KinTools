@@ -25,6 +25,22 @@ remains independently installable and buildable.
   pagination with QueryState-friendly serialization and an optional React hook.
 - [`PermissionEvaluator`](./PermissionEvaluator) – typed RBAC/ABAC evaluation
   with default-deny semantics and optional React guards.
+- [`FilterBuilder`](./FilterBuilder) – typed filter trees, local evaluation and
+  validated serialization for URLs or APIs.
+- [`SavedViews`](./SavedViews) – named, versioned view presets with validation
+  and replaceable persistence.
+- [`DraftHandler`](./DraftHandler) – debounced draft saving, serialized writes
+  and restoration that preserves newer edits.
+- [`FileUpload`](./FileUpload) – validated concurrent uploads, per-file progress,
+  cancellation, retry and an optional multipart XHR transport.
+- [`DataExport`](./DataExport) – column-based CSV/JSON export and browser downloads.
+- [`CommandRegistry`](./CommandRegistry) – typed actions with availability,
+  execution state and scoped keyboard shortcuts.
+- [`HistoryHandler`](./HistoryHandler) – bounded local undo/redo with grouped changes.
+- [`StorageState`](./StorageState) – validated persisted state, version migrations
+  and memory/browser storage adapters.
+- [`TaskQueue`](./TaskQueue) – bounded asynchronous concurrency, cancellation,
+  explicit retries and per-task outcomes.
 
 ## Integration
 
@@ -47,6 +63,8 @@ npm run validate:manifests
 
 The root workspace also provides `npm test`, `npm run typecheck` and
 `npm run build` to trigger the corresponding scripts in all existing packages.
+`npm test` additionally verifies cross-package workflows, React SSR and
+ESM/CommonJS imports that leave optional React peers unloaded.
 
 ## License
 

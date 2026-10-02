@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "name": "DataExport",
+  "package": "@jankincheloe/data-export",
+  "version": "0.1.0",
+  "description": "Column-based CSV and JSON export with browser download helpers.",
+  "category": "files",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "browser",
+    "node"
+  ],
+  "features": [
+    "csv-export",
+    "json-export",
+    "browser-download"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

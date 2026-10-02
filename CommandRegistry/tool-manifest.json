@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "name": "CommandRegistry",
+  "package": "@jankincheloe/command-registry",
+  "version": "0.1.0",
+  "description": "Typed commands with availability checks and scoped keyboard bindings.",
+  "category": "interaction",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "browser",
+    "react"
+  ],
+  "features": [
+    "typed-commands",
+    "availability",
+    "keyboard-shortcuts"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

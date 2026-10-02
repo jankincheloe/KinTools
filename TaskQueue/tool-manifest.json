@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "name": "TaskQueue",
+  "package": "@jankincheloe/task-queue",
+  "version": "0.1.0",
+  "description": "Concurrent cancellable tasks with per-task results and progress.",
+  "category": "async",
+  "status": "experimental",
+  "targets": [
+    "core",
+    "node",
+    "browser",
+    "react"
+  ],
+  "features": [
+    "concurrency",
+    "cancellation",
+    "progress",
+    "retry"
+  ],
+  "accessibility": false,
+  "dependencies": [],
+  "documentation": "./README.md"
+}

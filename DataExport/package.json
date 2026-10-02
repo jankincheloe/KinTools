@@ -1,0 +1,45 @@
+{
+  "name": "@jankincheloe/data-export",
+  "version": "0.1.0",
+  "description": "Column-based CSV and JSON export with browser download helpers.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist/!(* *).*",
+    "CHANGELOG.md"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js",
+      "require": "./dist/browser.cjs"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/clean-dist.mjs && tsup src/index.ts src/core.ts src/browser.ts --format esm,cjs --dts --external react",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "csv-export",
+    "json-export",
+    "browser-download"
+  ]
+}

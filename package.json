@@ -15,12 +15,21 @@
     "RequestClient",
     "OverlayManager",
     "PaginationHandler",
-    "PermissionEvaluator"
+    "PermissionEvaluator",
+    "FilterBuilder",
+    "SavedViews",
+    "DraftHandler",
+    "FileUpload",
+    "DataExport",
+    "CommandRegistry",
+    "HistoryHandler",
+    "StorageState",
+    "TaskQueue"
   ],
   "scripts": {
     "validate:manifests": "node scripts/validate-manifests.mjs",
     "typecheck": "npm run --workspaces --if-present typecheck",
     "build": "npm run --workspaces --if-present build",
-    "test": "npm run validate:manifests && npm run --workspaces --if-present test"
+    "test": "npm run validate:manifests && npm run --workspaces --if-present test && node --test scripts/integration.test.mjs"
   }
 }

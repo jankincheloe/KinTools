@@ -2,7 +2,7 @@
 
 KinTools soll weniger ein klassisches UI-Kit und mehr ein modularer Werkzeugkasten aus **headless Logik, optionalen React-Komponenten und austauschbaren Adaptern** werden. Der vorhandene `ListHandler` dient als Vorbild: produktneutral, barrierearm, typisiert und unabhängig von Backend, Sprache und Designsystem.
 
-## Umsetzungsstand (8. September 2026)
+## Umsetzungsstand (2. Oktober 2026)
 
 Die erste Ausbaustufe ist umgesetzt und zentral in der Tool-Registry erfasst:
 
@@ -19,8 +19,21 @@ Die erste Ausbaustufe ist umgesetzt und zentral in der Tool-Registry erfasst:
 - [x] `OverlayManager` v0.1 mit immutablem Stack, React-Portal, Fokussteuerung und Scroll-Lock
 - [x] `PaginationHandler` v0.1 für Seiten-/Größen- und Cursor-Pagination
 - [x] `PermissionEvaluator` v0.1 für typisierte RBAC-/ABAC-Regeln und React Guards
+- [x] `FilterBuilder` v0.1 mit typisierten Filterbäumen, lokaler Auswertung und Serialisierung
+- [x] `SavedViews` v0.1 mit benannten Ansichten, Validierung und versionierter Persistenz
+- [x] `DraftHandler` v0.1 mit Debouncing, seriellen Saves und sicherer Wiederherstellung
+- [x] `FileUpload` v0.1 mit Dateiprüfung, Warteschlange, Fortschritt und XHR-Adapter
+- [x] `DataExport` v0.1 für CSV, JSON und Browser-Downloads
+- [x] `CommandRegistry` v0.1 mit typisierten Aktionen und Tastenkürzel-Scopes
+- [x] `HistoryHandler` v0.1 für begrenzte lokale Undo-/Redo-Historie
+- [x] `StorageState` v0.1 für validierte Persistenz, Migrationen und Browser-Synchronisierung
+- [x] `TaskQueue` v0.1 für begrenzte Parallelität, Abbruch und explizite Wiederholungen
 
-Die neuen Pakete tragen zunächst den Reifegrad `experimental`. Noch offen sind insbesondere Filter/Saved Views, Datei-Upload sowie das Dokumentationsportal. Bei `FormHandler` bleiben Autosave, Entwurfswiederherstellung, Wizards, Navigation Guards und Schema-Adapter bewusst spätere Erweiterungen.
+Alle 18 Pakete tragen zunächst den Reifegrad `experimental`. Filter/Saved Views,
+Datei-Upload, Export und Entwurfssicherung sind als unabhängige Pakete umgesetzt.
+Noch offen sind insbesondere DataImport, wiederaufnehmbare Upload-Transporte,
+das Dokumentationsportal sowie Wizards, Navigation Guards und Schema-Adapter.
+Autosave und Entwurfswiederherstellung ergänzen FormHandler über DraftHandler.
 
 ## Architekturprinzipien
 
@@ -343,4 +356,8 @@ Ein Tool gilt als veröffentlichungsbereit, wenn es mindestens Folgendes besitzt
 
 ## Empfohlener nächster Schritt
 
-Als nächste konkrete Tools bieten sich `QueryState` und anschließend `SelectionHandler` an. Beide sind überschaubar, stark wiederverwendbar und unmittelbar mit dem vorhandenen `ListHandler` kombinierbar. Parallel dazu sollten die Paket- und Manifest-Konventionen definiert werden, damit alle weiteren Werkzeuge von Beginn an einheitlich aufgebaut sind.
+Als nächster Schritt bietet sich eine Demo-Anwendung mit Listen, Saved Views,
+Entwurfssicherung und Uploads an. Sie kann die experimentellen APIs anhand
+konkreter Abläufe prüfen. Anschließend lassen sich DataImport und ein
+Dokumentationsportal ergänzen. Paket-, Build- und Manifest-Konventionen sind
+bereits für alle 18 Tools eingerichtet.
